@@ -1,4 +1,4 @@
-module gorm.io/plugin/opentracing/tests
+module github.com/Heliner/opentracing/tests
 
 go 1.15
 
@@ -12,7 +12,7 @@ require (
 	go.uber.org/atomic v1.7.0 // indirect
 	gorm.io/driver/mysql v1.0.4
 	gorm.io/gorm v1.20.12
-	gorm.io/plugin/opentracing v1.0.0
+	github.com/Heliner/opentracing v1.0.0
 )
 
-replace gorm.io/plugin/opentracing => ../
+replace github.com/Heliner/opentracing => ../

@@ -51,7 +51,6 @@ func (p opentracingPlugin) injectBefore(db *gorm.DB, op operationName) {
 		}
 	}
 
-	// fixme db 是每个实例单独执行的，并发安全？
 	sp, _ := opentracing.StartSpanFromContextWithTracer(db.Statement.Context, p.opt.tracer, op.String())
 	db.InstanceSet(opentracingSpanKey, sp)
 }

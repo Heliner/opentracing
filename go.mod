@@ -1,4 +1,4 @@
-module gorm.io/plugin/opentracing
+module github.com/Heliner/opentracing
 
 go 1.15
 

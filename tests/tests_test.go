@@ -7,11 +7,11 @@ import (
 	"os"
 	"time"
 
+	gormopentracing "github.com/Heliner/opentracing"
 	"github.com/opentracing/opentracing-go"
 	"github.com/uber/jaeger-client-go"
 	"github.com/uber/jaeger-client-go/config"
 	jaegerlog "github.com/uber/jaeger-client-go/log"
-	gormopentracing "gorm.io/plugin/opentracing"
 
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"

@@ -1,6 +1,6 @@
 # gorm-opentracing
 
-[![Go Report Card](https://goreportcard.com/badge/github.com/go-gorm/opentracing)](https://goreportcard.com/report/github.com/go-gorm/opentracing) [![go.dev reference](https://img.shields.io/badge/go.dev-reference-007d9c?logo=go&logoColor=white&style=flat-square)](https://pkg.go.dev/gorm.io/plugin/opentracing)
+[![Go Report Card](https://goreportcard.com/badge/github.com/go-gorm/opentracing)](https://goreportcard.com/report/github.com/go-gorm/opentracing) [![go.dev reference](https://img.shields.io/badge/go.dev-reference-007d9c?logo=go&logoColor=white&style=flat-square)](https://pkg.go.dev/github.com/Heliner/opentracing)
 
 opentracing support for gorm2.
 
@@ -19,7 +19,7 @@ I assume that you already have an opentracing Tracer client started in your proj
 ```go
 import (
         ....
-	gormopentracing "gorm.io/plugin/opentracing"
+	gormopentracing "github.com/Heliner/opentracing"
 )
 func main() {
 	var db *gorm.DB
