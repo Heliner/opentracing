@@ -1,6 +1,9 @@
 package gormopentracing
 
-import "github.com/opentracing/opentracing-go"
+import (
+	"github.com/opentracing/opentracing-go"
+	"gorm.io/gorm"
+)
 
 type options struct {
 	// logResult means log SQL operation result into span log which causes span size grows up.
@@ -33,6 +36,8 @@ type options struct {
 
 	// rawOpName defines operation name for "raw" span
 	rawOpName operationName
+
+	injectFilter func(db *gorm.DB) bool
 }
 
 func defaultOption() *options {
@@ -143,5 +148,15 @@ func WithRawOpName(name operationName) ApplyOption {
 		}
 
 		o.rawOpName = name
+	}
+}
+
+func WithInjectFilter(injectFilter func(db *gorm.DB) bool) ApplyOption {
+	return func(o *options) {
+		if injectFilter == nil {
+			return
+		}
+
+		o.injectFilter = injectFilter
 	}
 }

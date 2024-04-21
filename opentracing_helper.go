@@ -45,6 +45,13 @@ func (p opentracingPlugin) injectBefore(db *gorm.DB, op operationName) {
 		return
 	}
 
+	if p.opt.injectFilter != nil {
+		if p.opt.injectFilter(db) == false {
+			return
+		}
+	}
+
+	// fixme db 是每个实例单独执行的，并发安全？
 	sp, _ := opentracing.StartSpanFromContextWithTracer(db.Statement.Context, p.opt.tracer, op.String())
 	db.InstanceSet(opentracingSpanKey, sp)
 }
@@ -57,6 +64,11 @@ func (p opentracingPlugin) extractAfter(db *gorm.DB) {
 	if db.Statement == nil || db.Statement.Context == nil {
 		db.Logger.Error(context.TODO(), "could not extract sp from nil Statement.Context or nil Statement")
 		return
+	}
+	if p.opt.injectFilter != nil {
+		if p.opt.injectFilter(db) == false {
+			return
+		}
 	}
 
 	// extract sp from db context
